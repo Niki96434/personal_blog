@@ -1,10 +1,11 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { PostController } from './controllers/post.controller';
+import { PostService } from './services/post.service';
 
-@Module({
+@Module({ // объект конфигурации
   imports: [],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [PostController],
+  providers: [PostService], // необязателен
 })
 export class AppModule {}
+// позволяет несту обрабатывать внедрение зависимостей
