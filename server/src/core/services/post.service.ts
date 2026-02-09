@@ -1,15 +1,15 @@
 import { Injectable } from '@nestjs/common';
-import { Post } from '../interfaces/post.interface';
+import { PostInterface } from '../interfaces/post.interface';
 
 @Injectable() // сигнализирует о том, что класс PostService может управляться Nest IoC(контейнер, который управляет отношениями между провайдерами)
 export class PostService { 
-  readonly posts: Post[] = []; // вместо сущностей используются интерфейсы к сущностям
+  readonly posts: PostInterface[] = []; // вместо сущностей используются интерфейсы к сущностям
 
-  addPost(post: Post) { // интерфейс поста
+  addPost(post: PostInterface) { // интерфейс поста
     this.posts.push(post);
     return 'пост добавлен'
   }
-  findAll() : Post[] {
+  findAll(): PostInterface[] {
     return 'массив постов'
   }
 
