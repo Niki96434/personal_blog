@@ -1,4 +1,4 @@
-import { PostInterface } from '../interfaces/post.interface';
+import { PostInterface } from '../posts/interfaces/post.interface';
 export interface PostRepository {
   getPost(id: number): Promise<PostInterface>;
   delPost(id: number): Promise<void>;

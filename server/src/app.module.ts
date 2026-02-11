@@ -1,12 +1,27 @@
 import { Module } from '@nestjs/common';
-import { PostController } from './controllers/post.controller';
-import { PostService } from './services/post.service';
-import { DatabaseModule } from 'src/database/database.module';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { DataSource } from 'typeorm';
+import { PostsModule } from './posts/posts.module';
 // объект конфигурации
 @Module({
-  imports: [DatabaseModule],
-  controllers: [PostController],
-  providers: [PostService],
-  exports: [], // экспорт модулей, которые можно переиспользовать
+  imports: [
+    PostsModule,
+    TypeOrmModule.forRoot({
+      type: 'postgres',
+      host: 'localhost',
+      port: 3000,
+      username: 'nikki',
+      password: 'psw228',
+      database: 'posts_db',
+      autoLoadEntities: true,
+    }),
+  ],
+  controllers: [],
+  providers: [],
+  exports: [],
 })
-export class AppModule {}
+export class AppModule {
+  constructor(private DataSource: DataSource) { // объект для подкл/откл бд
+
+  }
+}

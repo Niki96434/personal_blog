@@ -1,4 +1,4 @@
-import { PostInterface } from 'src/interfaces/post.interface';
+import { PostInterface } from 'src/posts/interfaces/post.interface';
 export class Post implements PostInterface {
   readonly id: number; // можно изменять только в конструкторе(можно просто убрать сет и оставить гет)
   title: string;

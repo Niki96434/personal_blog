@@ -34,7 +34,7 @@ let PostController = class PostController {
             return this.PostService.findOne(id);
         }
         else {
-            return;
+            throw new common_1.BadRequestException('поста с таким кодом не существует');
         }
     }
 };
@@ -62,7 +62,7 @@ __decorate([
     __param(0, (0, common_1.Param)('id', common_1.ParseIntPipe)),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
-    __metadata("design:returntype", Object)
+    __metadata("design:returntype", void 0)
 ], PostController.prototype, "findOnePost", null);
 exports.PostController = PostController = __decorate([
     (0, common_1.Controller)('/posts'),
