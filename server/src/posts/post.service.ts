@@ -1,19 +1,23 @@
 import { Injectable } from '@nestjs/common';
-import { PostInterface } from '../posts/interfaces/post.interface';
+import { Post } from './post.entity';
+import { Repository } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable() // сигнализирует о том, что класс PostService может управляться Nest IoC(контейнер, который управляет отношениями между провайдерами)
 export class PostService {
-  readonly posts: PostInterface[] = []; // вместо сущностей используются интерфейсы к сущностям
-
-  addPost(post: PostInterface) {
-    this.posts.push(post);
+  readonly posts: Post[] = [];
+  constructor(
+    @InjectRepository(Post)
+    private postRepository: Repository<Post>) {}
+  addPost(post: Post) {
+    this.posts(post);
     return 'пост добавлен';
   }
-  findAll(): PostInterface[] {
+  findAll(): Post[] {
     return this.posts;
   }
   // type narrowing(truthiness narrow)
-  findOne(id: number): PostInterface | undefined {
+  findOne(id: number): Post | undefined {
     if (id) {
       const arrPosts = this.posts.filter((post) => post.id === id);
       for (const post of arrPosts) {

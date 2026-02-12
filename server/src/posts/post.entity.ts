@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn } from "typeorm";
 
 @Entity()
 export class Post {
@@ -12,13 +12,17 @@ export class Post {
     image: string;
     @Column({ default: false })
     published: boolean;
-    constructor(id: number, title: string, content: string, image: string, published: boolean) {
+    @CreateDateColumn()
+    dateOfCreation: number;
+    constructor(id: number, title: string, content: string, image: string, published: boolean, dateOfCreation: number) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.image = image;
         this.published = published;
+        this.dateOfCreation = dateOfCreation;
     }
 }
 
-//таблица поста
+//таблица поста, которая будет сопоставляться в таблицей в бд
+//тайпорм может сам определять репозиторий, но это антипаттерн

@@ -4,6 +4,7 @@ import { PostService } from 'src/posts/post.service';
 
 @Global() // постмодуль не нужно будет импортировать в другие модули, только постсервис
 @Module({
+    imports: [],
     controllers: [PostController],
     providers: [PostService],
     exports: [PostService] // один и тот же экземпляр постсервиса будет использоваться при импортировании этого модуля другими модулями
